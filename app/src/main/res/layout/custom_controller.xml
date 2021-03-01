@@ -86,6 +86,7 @@
             android:layout_marginTop="8dp"
             app:buffered_color="#95989F"
             app:played_color="#FF0000"
+            app:scrubber_color="@color/colorWhite"
             app:unplayed_color="#45424E" />
     </LinearLayout>
 

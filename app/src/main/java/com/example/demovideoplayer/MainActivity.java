@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,6 +44,9 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     /*https://www.youtube.com/watch?v=MdQOXoEMLOs&ab_channel=AndroidCoding*/
+    /*https://medium.com/fungjai/playing-video-by-exoplayer-b97903be0b33*/
+    /*https://github.com/mikkipastel/VideoPlanet/tree/develop*/
+    /*D:\AndroidStudioProjects04-05-2019\AndroidStudioProjectsForGitHub\VideoPlanet*/
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -97,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         //Video url
         /*Uri videoUrl = Uri.parse("https://i.imgur.com/7bMqysJ.mp4");
         Uri videoUrl2 = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");*/
+
 
         //Initialize load control
         LoadControl loadControl = new DefaultLoadControl();
@@ -232,8 +237,12 @@ public class MainActivity extends AppCompatActivity {
         video1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                videoUrl = Uri.parse("https://i.imgur.com/7bMqysJ.mp4");
-                initExoplayer();
+                /*videoUrl = Uri.parse("https://i.imgur.com/7bMqysJ.mp4");
+                initExoplayer();*/
+                /*simpleExoPlayer.setPlayWhenReady(false);
+                simpleExoPlayer.getPlaybackState();*/
+
+                startActivity(new Intent(MainActivity.this,DemoKotlinActivity.class));
 
             }
         });
@@ -241,10 +250,14 @@ public class MainActivity extends AppCompatActivity {
         video2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                videoUrl = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
-                /*videoUrl = Uri.parse("https://www.radiantmediaplayer.com/media/bbb-360p.mp4");*/
-                initExoplayer();
+                /*videoUrl = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+                *//*videoUrl = Uri.parse("https://www.radiantmediaplayer.com/media/bbb-360p.mp4");*//*
+                initExoplayer();*/
+                simpleExoPlayer.setPlayWhenReady(true);
+                simpleExoPlayer.getPlaybackState();
             }
         });
     }
+
+    //Testing code
 }
