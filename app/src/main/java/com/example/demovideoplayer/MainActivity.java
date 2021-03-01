@@ -3,10 +3,13 @@ package com.example.demovideoplayer;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -47,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbarTitle)
     TextView tvToolbarTitle;
 
+    @BindView(R.id.video1)
+    Button video1;
+
+    @BindView(R.id.video2)
+    Button video2;
+
     @BindView(R.id.player_view)
     PlayerView playerView;
 
@@ -59,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
     SimpleExoPlayer simpleExoPlayer;
     boolean flag = false;
 
+    Uri videoUrl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initToolbar();
+        videoUrl = Uri.parse("https://i.imgur.com/7bMqysJ.mp4");
+        initExoplayer();
         initView();
     }
 
@@ -73,16 +86,17 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        tvToolbarTitle.setText("Craying");
+        tvToolbarTitle.setText("exoplayer");
     }
 
-    private void initView() {
+    private void initExoplayer() {
 
         //Make activity full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //Video url
-        Uri videoUrl = Uri.parse("https://i.imgur.com/7bMqysJ.mp4");
+        /*Uri videoUrl = Uri.parse("https://i.imgur.com/7bMqysJ.mp4");
+        Uri videoUrl2 = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");*/
 
         //Initialize load control
         LoadControl loadControl = new DefaultLoadControl();
@@ -169,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btFullScreen.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SourceLockedOrientationActivity")
             @Override
             public void onClick(View view) {
                 //Check condition
@@ -176,10 +191,60 @@ public class MainActivity extends AppCompatActivity {
                     //When flag is true
                     //Set enter full sreen image
                     btFullScreen.setImageDrawable(getResources().getDrawable(R.drawable.ic_fullscreen));
+                    //Set portrait orientation
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    //Set flag value is false
+                    flag = false;
+                } else {
+                    //When flag is false
+                    //Set exit full screen image
+                    btFullScreen.setImageDrawable(getResources().getDrawable(R.drawable.ic_fullscreen_exit));
+                    //Set landscape orientation
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    //Set flag value is true
+                    flag = true;
                 }
 
             }
         });
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Stop video when ready
+        simpleExoPlayer.setPlayWhenReady(false);
+        //Get playback state
+        simpleExoPlayer.getPlaybackState();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        //Play video when ready
+        simpleExoPlayer.setPlayWhenReady(true);
+        //Get playback state
+        simpleExoPlayer.getPlaybackState();
+    }
+
+    private void initView() {
+        video1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                videoUrl = Uri.parse("https://i.imgur.com/7bMqysJ.mp4");
+                initExoplayer();
+
+            }
+        });
+
+        video2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                videoUrl = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+                /*videoUrl = Uri.parse("https://www.radiantmediaplayer.com/media/bbb-360p.mp4");*/
+                initExoplayer();
+            }
+        });
     }
 }
