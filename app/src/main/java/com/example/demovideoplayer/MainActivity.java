@@ -40,6 +40,9 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.demovideoplayer.app.AppKey.NOTHING_ELSE_MATTER;
+import static com.example.demovideoplayer.app.AppUrl.URL_CENTURIONS_VIDEO;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initToolbar();
-        videoUrl = Uri.parse("https://i.imgur.com/7bMqysJ.mp4");
+        videoUrl = Uri.parse(URL_CENTURIONS_VIDEO);
         initExoplayer();
         initView();
     }
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        tvToolbarTitle.setText("exoplayer");
+        tvToolbarTitle.setText(NOTHING_ELSE_MATTER);
     }
 
     private void initExoplayer() {
@@ -242,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                 /*simpleExoPlayer.setPlayWhenReady(false);
                 simpleExoPlayer.getPlaybackState();*/
 
-                startActivity(new Intent(MainActivity.this,DemoKotlinActivity.class));
+                startActivity(new Intent(MainActivity.this, DemoKotlinActivity.class));
 
             }
         });
@@ -251,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 /*videoUrl = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
-                *//*videoUrl = Uri.parse("https://www.radiantmediaplayer.com/media/bbb-360p.mp4");*//*
+                 *//*videoUrl = Uri.parse("https://www.radiantmediaplayer.com/media/bbb-360p.mp4");*//*
                 initExoplayer();*/
                 simpleExoPlayer.setPlayWhenReady(true);
                 simpleExoPlayer.getPlaybackState();
