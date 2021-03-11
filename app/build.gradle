@@ -46,4 +46,8 @@ dependencies {
     //exoplayer
     implementation 'com.google.android.exoplayer:exoplayer:2.7.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Own library
+    implementation 'com.github.saifulislamrajon:Toasting-Library:0.1.1'
+
 }

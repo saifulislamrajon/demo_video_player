@@ -25,10 +25,10 @@
             app:fastforward_increment="10000"
             app:hide_on_touch="true"
             app:player_layout_id="@layout/exo_simple_player_view"
+            app:repeat_toggle_modes="one"
             app:resize_mode="fit"
             app:rewind_increment="10000"
             app:show_timeout="5000"
-            app:repeat_toggle_modes="one"
             app:use_controller="true" />
 
         <ProgressBar
@@ -62,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/video1"
                 android:text="video2" />
+
         </LinearLayout>
 
     </RelativeLayout>

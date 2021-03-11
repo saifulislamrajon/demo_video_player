@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.toastinglibrary.ToastingMessage;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         videoUrl = Uri.parse(URL_CENTURIONS_VIDEO);
         initExoplayer();
         initView();
+
     }
 
     private void initToolbar() {
@@ -260,6 +262,12 @@ public class MainActivity extends AppCompatActivity {
                 simpleExoPlayer.getPlaybackState();
             }
         });
+
+    }
+
+    private void ownLibraryCall(){
+        //        ToastingMessage.s(this,"hi man");
+        ToastingMessage.toastMessageShortOrLong(this,true,"hi mannnnnnn");
     }
 
     //Testing code
