@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.toastinglibrary.ToastingMessage;
@@ -73,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.bt_fullscreen)
     ImageView btFullScreen;
 
+    @BindView(R.id.btnPlay)
+    ImageView btnPlay;
+
+    @BindView(R.id.rlMainSection)
+    RelativeLayout rlMainSection;
+
     SimpleExoPlayer simpleExoPlayer;
     boolean flag = false;
 
@@ -86,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         initToolbar();
         videoUrl = Uri.parse(URL_CENTURIONS_VIDEO);
-        initExoplayer();
+//        initExoplayer();
         initView();
 
     }
@@ -260,6 +268,14 @@ public class MainActivity extends AppCompatActivity {
                 initExoplayer();*/
                 simpleExoPlayer.setPlayWhenReady(true);
                 simpleExoPlayer.getPlaybackState();
+            }
+        });
+
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rlMainSection.setVisibility(View.VISIBLE);
+                initExoplayer();
             }
         });
 
