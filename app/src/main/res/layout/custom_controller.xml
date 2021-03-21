@@ -49,7 +49,9 @@
             android:layout_height="wrap_content"
             android:gravity="bottom"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:padding="0dp">
 
             <TextView
                 android:id="@+id/exo_position"
@@ -72,22 +74,46 @@
                 android:layout_weight="1"
                 android:textColor="#CBCDC8" />
 
+            <!--<ImageView
+                android:id="@+id/bt_fullscreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_fullscreen" />-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <com.google.android.exoplayer2.ui.DefaultTimeBar
+                android:id="@+id/exo_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                app:buffered_color="#95989F"
+                app:played_color="#FF0000"
+                app:scrubber_color="@color/colorWhite"
+                app:unplayed_color="#45424E" />
+
+            <ImageView
+                android:id="@+id/bt_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_settings" />
+
             <ImageView
                 android:id="@+id/bt_fullscreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/ic_fullscreen" />
         </LinearLayout>
 
-        <com.google.android.exoplayer2.ui.DefaultTimeBar
-            android:id="@+id/exo_progress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:buffered_color="#95989F"
-            app:played_color="#FF0000"
-            app:scrubber_color="@color/colorWhite"
-            app:unplayed_color="#45424E" />
+
     </LinearLayout>
 
 </RelativeLayout>

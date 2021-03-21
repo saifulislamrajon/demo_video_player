@@ -6,4 +6,7 @@
 
     <color name="colorGreen">#225C6E</color>
     <color name="colorWhite">#ffffff</color>
+
+    <color name="colorOrange">#FFA500</color>
+    <color name="colorDarkOrange">#FF8C00</color>
 </resources>

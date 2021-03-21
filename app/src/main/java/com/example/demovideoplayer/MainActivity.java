@@ -4,18 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.toastinglibrary.ToastingMessage;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -47,7 +54,7 @@ import static com.example.demovideoplayer.app.AppKey.NOTHING_ELSE_MATTER;
 import static com.example.demovideoplayer.app.AppUrl.URL_CENTURIONS_VIDEO;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     /*https://www.youtube.com/watch?v=MdQOXoEMLOs&ab_channel=AndroidCoding*/
     /*https://medium.com/fungjai/playing-video-by-exoplayer-b97903be0b33*/
@@ -72,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
+    @BindView(R.id.bt_setting)
+    ImageView btSetting;
+
     @BindView(R.id.bt_fullscreen)
     ImageView btFullScreen;
 
@@ -85,6 +95,17 @@ public class MainActivity extends AppCompatActivity {
     boolean flag = false;
 
     Uri videoUrl;
+
+    //Setting dialog
+    RadioGroup radioGroup;
+    RadioButton radioAuto;
+    RadioButton radio240p;
+    RadioButton radio360p;
+    RadioButton radio480p;
+    RadioButton radio720p;
+    Button btnDone;
+
+    String selectedValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,6 +221,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSettingDialog();
+            }
+        });
+
         btFullScreen.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SourceLockedOrientationActivity")
             @Override
@@ -241,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         //Play video when ready
-        simpleExoPlayer.setPlayWhenReady(true);
+        simpleExoPlayer.setPlayWhenReady(false);
         //Get playback state
         simpleExoPlayer.getPlaybackState();
     }
@@ -281,10 +309,77 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void ownLibraryCall(){
+    private void ownLibraryCall() {
         //        ToastingMessage.s(this,"hi man");
-        ToastingMessage.toastMessageShortOrLong(this,true,"hi mannnnnnn");
+        ToastingMessage.toastMessageShortOrLong(this, true, "hi mannnnnnn");
     }
 
-    //Testing code
+    private void showSettingDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialog_setting);
+
+        radioAuto = dialog.findViewById(R.id.radioAuto);
+        radio240p = dialog.findViewById(R.id.radio240);
+        radio360p = dialog.findViewById(R.id.radio360);
+        radio480p = dialog.findViewById(R.id.radio480);
+        radio720p = dialog.findViewById(R.id.radio720);
+        btnDone = dialog.findViewById(R.id.btnDone);
+
+        radioAuto.setOnClickListener(this);
+        radio240p.setOnClickListener(this);
+        radio360p.setOnClickListener(this);
+        radio480p.setOnClickListener(this);
+        radio720p.setOnClickListener(this);
+        btnDone.setOnClickListener(this);
+
+        dialog.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.radioAuto:
+                selectedValue = "auto";
+                radio240p.setChecked(false);
+                radio360p.setChecked(false);
+                radio480p.setChecked(false);
+                radio720p.setChecked(false);
+                break;
+            case R.id.radio240:
+                selectedValue = "240";
+                radioAuto.setChecked(false);
+                radio360p.setChecked(false);
+                radio480p.setChecked(false);
+                radio720p.setChecked(false);
+                break;
+            case R.id.radio360:
+                selectedValue = "360";
+                radio240p.setChecked(false);
+                radioAuto.setChecked(false);
+                radio480p.setChecked(false);
+                radio720p.setChecked(false);
+                break;
+            case R.id.radio480:
+                selectedValue = "480";
+                radio240p.setChecked(false);
+                radio360p.setChecked(false);
+                radioAuto.setChecked(false);
+                radio720p.setChecked(false);
+                break;
+            case R.id.radio720:
+                selectedValue = "720";
+                radio240p.setChecked(false);
+                radio360p.setChecked(false);
+                radio480p.setChecked(false);
+                radioAuto.setChecked(false);
+                break;
+            case R.id.btnDone:
+
+                break;
+        }
+    }
+
+
 }
