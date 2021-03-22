@@ -332,7 +332,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         radio360p.setOnClickListener(this);
         radio480p.setOnClickListener(this);
         radio720p.setOnClickListener(this);
-        btnDone.setOnClickListener(this);
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
         dialog.show();
     }
@@ -375,9 +380,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 radio480p.setChecked(false);
                 radioAuto.setChecked(false);
                 break;
-            case R.id.btnDone:
+            /*case R.id.btnDone:
 
-                break;
+                break;*/
         }
     }
 
