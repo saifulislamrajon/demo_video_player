@@ -9,20 +9,18 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.browse.MediaBrowser;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.toastinglibrary.ToastingMessage;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -97,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SimpleExoPlayer simpleExoPlayer;
     boolean flag = false;
 
-    Uri videoUrl;
+    Uri videoUri;
 
     //Setting dialog
     RadioGroup radioGroup;
@@ -117,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         initToolbar();
-        videoUrl = Uri.parse(URL_CENTURIONS_VIDEO);
+        videoUri = Uri.parse(URL_CENTURIONS_VIDEO);
 //        initExoplayer();
         initView();
 
@@ -153,7 +151,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Initialize extractors factory
         ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
         //Initialize media source
-        MediaSource mediaSource = new ExtractorMediaSource(videoUrl, factory, extractorsFactory, null, null);
+        MediaSource mediaSource = new ExtractorMediaSource(videoUri, factory, extractorsFactory, null, null);
+        /*//Initialize MediaItem
+        MediaItem mediaItem = MediaItem.fromUri(videoUri);*/
         //Set player
         playerView.setPlayer(simpleExoPlayer);
         //Keep screen on
@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Play video when ready
         simpleExoPlayer.setPlayWhenReady(true);
         simpleExoPlayer.addListener(new Player.EventListener() {
+
             @Override
             public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
 
