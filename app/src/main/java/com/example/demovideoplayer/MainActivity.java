@@ -91,6 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.rlMainSection)
     RelativeLayout rlMainSection;
 
+    @BindView(R.id.rlV1V2)
+    RelativeLayout rlV1V2;
+
     SimpleExoPlayer simpleExoPlayer;
     boolean flag = false;
 
@@ -336,6 +339,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+
             }
         });
 
@@ -380,9 +384,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 radio480p.setChecked(false);
                 radioAuto.setChecked(false);
                 break;
-            /*case R.id.btnDone:
+            case R.id.btnDone:
 
-                break;*/
+                break;
         }
     }
 
