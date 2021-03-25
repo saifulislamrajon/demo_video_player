@@ -114,11 +114,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        init();
+
+    }
+
+    private void init() {
         initToolbar();
         videoUri = Uri.parse(URL_CENTURIONS_VIDEO);
-//        initExoplayer();
+        //initExoplayer();
         initView();
-
     }
 
     private void initToolbar() {
