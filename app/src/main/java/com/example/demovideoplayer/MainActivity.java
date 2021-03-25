@@ -316,6 +316,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void ownLibraryCall() {
         //        ToastingMessage.s(this,"hi man");
         ToastingMessage.toastMessageShortOrLong(this, true, "hi mannnnnnn");
+
     }
 
     private void showSettingDialog() {
